@@ -1,5 +1,4 @@
-# Project Name
-new-for-you
+# News For You
 
 ## Project Summary
 
