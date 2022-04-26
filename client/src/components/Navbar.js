@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { Navbar, Nav, Container, Modal, Tab } from "react-bootstrap";
+import React from "react";
+import { Navbar, Container, Nav } from "react-bootstrap";
+// import styled from "styled-components";
 
 const AppNavbar = () => {
-  const [showModal, setShowModal] = useState(false);
-
   return (
     <>
-      <Navbar bg="light" variant="light" expand="lg">
-        <Container fluid>
-          <Navbar.Brand as={Link} to="/">
-            News For You
-          </Navbar.Brand>
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">News For You</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">Favorites</Nav.Link>
+            <Nav.Link href="#pricing">Login</Nav.Link>
+            <Nav.Link href="#pricing">Sign Up</Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
     </>
   );
 };
+
+export default AppNavbar;
