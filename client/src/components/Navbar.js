@@ -13,10 +13,13 @@ import {
 // import SignUpForm from "./SignupForm";
 
 const AppNavbar = () => {
-  const [show, setShow] = useState(false);
+  const [loginShow, setLoginShow] = useState(false);
+  const [signUpShow, setSignUpShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleLoginClose = () => setLoginShow(false);
+  const handleLoginShow = () => setLoginShow(true);
+  const handleSignUpClose = () => setSignUpShow(false);
+  const handleSignUpShow = () => setSignUpShow(true);
 
 
   return (
@@ -32,7 +35,7 @@ const AppNavbar = () => {
               <Nav.Link eventKey={2}>Favorites</Nav.Link>
               <Button
                 variant="dark"
-                onClick={handleShow}
+                onClick={handleLoginShow}
                 size="lg"
                 style={{ marginRight: "1rem", padding: "0.7rem 1rem" }} 
               >
@@ -40,7 +43,7 @@ const AppNavbar = () => {
               </Button>
               <Button
                 variant="danger"
-                onClick={handleShow}
+                onClick={handleSignUpShow}
                 size="lg"
                 style={{ marginRight: "1rem", padding: "0.5rem 1rem" }} 
               >
@@ -48,7 +51,7 @@ const AppNavbar = () => {
               </Button>
             </Nav>
           </Navbar.Collapse>
-          <Modal size="lg" show={show} onHide={handleClose}>
+          <Modal size="lg" show={loginShow} onHide={handleLoginClose}>
             <Modal.Header closeButton>
               <Modal.Title>Login</Modal.Title>
             </Modal.Header>
@@ -63,13 +66,13 @@ const AppNavbar = () => {
               </InputGroup>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button variant="secondary" onClick={handleLoginClose}>
                 Close
               </Button>
               <Button variant="primary">Login</Button>
             </Modal.Footer>
           </Modal>
-          <Modal size='lg' show={show} onHide={handleClose}>
+          <Modal size='lg' show={signUpShow} onHide={handleSignUpClose}>
     <Modal.Header closeButton>
         <Modal.Title>
             Signup
@@ -90,7 +93,7 @@ const AppNavbar = () => {
         </InputGroup>
     </Modal.Body>
     <Modal.Footer>
-        <Button variant='secondary' onClick={handleClose}>Close</Button>
+        <Button variant='secondary' onClick={handleSignUpClose}>Close</Button>
         <Button variant='primary'>Submit</Button>
     </Modal.Footer>
 </Modal>
