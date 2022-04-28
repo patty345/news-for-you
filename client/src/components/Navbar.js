@@ -26,12 +26,12 @@ const AppNavbar = () => {
     <>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
         <Container>
-          <Navbar.Brand href="/">News For You</Navbar.Brand>
+          <Navbar.Brand href='/'>News For You</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              <Nav.Link href="/" style={{ marginRight: '0.1rem', padding: '0.7rem 1rem', fontsize: '20px'}}>Home</Nav.Link>
+              <Nav.Link href='/' style={{ marginRight: '0.1rem', padding: '0.7rem 1rem', fontsize: '20px'}}>Home</Nav.Link>
               <Nav.Link eventKey={2} style={{ marginRight: '1rem', padding: '0.7rem 1rem', fontsize: '10px'}}>Favorites</Nav.Link>
               <Button
                 variant="dark"
