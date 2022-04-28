@@ -31,8 +31,8 @@ const AppNavbar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto"></Nav>
             <Nav>
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link eventKey={2}>Favorites</Nav.Link>
+              <Nav.Link href="/" style={{ marginRight: '0.1rem', padding: '0.7rem 1rem', fontsize: '20px'}}>Home</Nav.Link>
+              <Nav.Link eventKey={2} style={{ marginRight: '1rem', padding: '0.7rem 1rem', fontsize: '10px'}}>Favorites</Nav.Link>
               <Button
                 variant="dark"
                 onClick={handleLoginShow}
@@ -99,52 +99,6 @@ const AppNavbar = () => {
 </Modal>
         </Container>
       </Navbar>
-      {/* <Modal size='lg' show={show} onHide={handleClose}>
-    <Modal.Header closeButton>
-        <Modal.Title>
-            Login
-        </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-        <InputGroup className='mb-3'>
-            <InputGroup.Text>Email</InputGroup.Text>
-            <FormControl type='email' />
-        </InputGroup>
-        <InputGroup className='mb-3'>
-            <InputGroup.Text>Password</InputGroup.Text>
-            <FormControl type='password' />
-        </InputGroup>
-    </Modal.Body>
-    <Modal.Footer>
-        <Button variant='secondary' onClick={handleClose}>Close</Button>
-        <Button variant='primary'>Login</Button>
-    </Modal.Footer>
-</Modal> */}
-      {/* <Modal size='lg' show={show} onHide={handleClose}>
-    <Modal.Header closeButton>
-        <Modal.Title>
-            Signup
-        </Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-    <InputGroup className='mb-3'>
-            <InputGroup.Text>Username</InputGroup.Text>
-            <FormControl type='username' />
-        </InputGroup>
-        <InputGroup className='mb-3'>
-            <InputGroup.Text>Email</InputGroup.Text>
-            <FormControl type='email' />
-        </InputGroup>
-        <InputGroup className='mb-3'>
-            <InputGroup.Text>Password</InputGroup.Text>
-            <FormControl type='password' />
-        </InputGroup>
-    </Modal.Body>
-    <Modal.Footer>
-        <Button variant='secondary' onClick={handleClose}>Close</Button>
-        <Button variant='primary'>Submit</Button>
-    </Modal.Footer>
-</Modal> */}
     </>
   );
 };
