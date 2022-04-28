@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Card, Col } from 'react-bootstrap';
+import { Row, Card, Col, Button } from 'react-bootstrap';
 
 
 const NewsContent = () => {
@@ -17,6 +17,7 @@ const NewsContent = () => {
             This is a longer card with supporting text below as a natural
             lead-in to additional content. This content is a little bit longer.
           </Card.Text>
+          <Button variant='info'>Save to Favorites</Button>
         </Card.Body>
       </Card>
     </Col>
