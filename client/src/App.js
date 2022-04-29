@@ -1,20 +1,20 @@
-import React from 'react';
-import LoginForm from './components/LoginForm';
-import Navbar from './components/Navbar';
-import NewsContent from './components/Newscontent';
-import SignupForm from './components/SignupForm';
+import React from "react";
+
+import Navbar from "./components/Navbar";
+import NewsContent from "./components/Newscontent";
+
+import FavoriteNews from "./pages/FavoriteNews";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <>
-    <div>
+    <BrowserRouter>
       <Navbar></Navbar>
-      <SignupForm></SignupForm>
-      <LoginForm></LoginForm>
-      <NewsContent></NewsContent>
-    </div>
-    </>
-    
+      <Routes>
+        <Route path="/" element={<NewsContent />}></Route>
+        <Route path="/favorites" element={<FavoriteNews />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
