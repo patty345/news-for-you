@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, Button } from 'react-bootstrap';
 
+import Auth from '../utils/auth'
 const FavoriteNews = () =>  {
 
     return(
