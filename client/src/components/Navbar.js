@@ -21,16 +21,7 @@ const AppNavbar = () => {
   const handleSignUpClose = () => setSignUpShow(false);
   const handleSignUpShow = () => setSignUpShow(true);
 
-//  const onClickLogin = () => {
-//      console.log("test")
-//      // Get value from Email input
-//      // Get Value from password input
-//      // make a request to backend with them.
-//      // After getting respnose from backend.(Success)
-//      // then Save user status in localstorage.
-//      // hide this modal
-//     //  setLoginShow(false);
-//  }
+
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
