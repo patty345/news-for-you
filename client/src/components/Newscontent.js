@@ -11,19 +11,18 @@ const NewsContent = () => {
     
   
     const handleArticles = async () => {
-
+      try {
         const response = await searchArticles(1);
     
       if (!response.ok) {
         throw new Error("something went wrong");
       }
     
-      const { items } = await response.json();
+      const { articles } = await response.json();
 
 
     
-      const newsData = items.map((news) => ({
-        newsId: news._id,
+      const newsData = articles.map((news) => ({
         publisher: news.publisher,
         title: news.title,
         description: news.description,
@@ -32,6 +31,9 @@ const NewsContent = () => {
       }));
 
       setArticles(newsData)
+    } catch (err) {
+      console.log(err)
+    }
     }
     handleArticles()
   return (
