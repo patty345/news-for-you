@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/DerpVoltz/news-for-you/issues"
   },
-  "homepage": "https://github.com/DerpVoltz/news-for-you#readme"
+  "homepage": "https://github.com/DerpVoltz/news-for-you#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
 }
