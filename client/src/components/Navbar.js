@@ -44,8 +44,6 @@ const AppNavbar = () => {
   const handleSignUpShow = () => setSignUpShow(true);
 
 
-<<<<<<< HEAD
-=======
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -68,7 +66,6 @@ const AppNavbar = () => {
 //      // hide this modal
 //     //  setLoginShow(false);
 //  }
->>>>>>> cf58598ab6f707f66d1a49799a16f441c4d1aba4
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
