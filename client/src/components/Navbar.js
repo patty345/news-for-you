@@ -44,7 +44,7 @@ const AppNavbar = () => {
   const handleSignUpShow = () => setSignUpShow(true);
 
 
-  const handleSingUpSubmit = async (event) => {
+  const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     try {
       const { data } = await addUser({
@@ -129,21 +129,21 @@ const AppNavbar = () => {
     </Modal.Header>
     <Modal.Body>
     <InputGroup className='mb-3'>
-            <InputGroup.Text onChange={handleSignUpChange}>Username</InputGroup.Text>
+            <InputGroup.Text name="username" value={signUpFormState.username} onChange={handleSignUpChange}>Username</InputGroup.Text>
             <FormControl type='username' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text onChange={handleSignUpChange}>Email</InputGroup.Text>
+            <InputGroup.Text name="email" value={signUpFormState.email} onChange={handleSignUpChange}>Email</InputGroup.Text>
             <FormControl type='email' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text onChange={handleSignUpChange}>Password</InputGroup.Text>
+            <InputGroup.Text name="password" value={signUpFormState.password} onChange={handleSignUpChange}>Password</InputGroup.Text>
             <FormControl type='password' />
         </InputGroup>
     </Modal.Body>
     <Modal.Footer>
         <Button variant='secondary' onClick={handleSignUpClose}>Close</Button>
-        <Button variant='primary' onClick={handleSingUpSubmit}>Submit</Button>
+        <Button variant='primary' onClick={handleSignUpSubmit}>Submit</Button>
     </Modal.Footer>
 </Modal>
         </Container>

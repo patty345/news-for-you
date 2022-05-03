@@ -1,18 +1,47 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink
+} from '@apollo/client'
+import { setContext } from '@apollo/client/link/context';
+
 import Navbar from "./components/Navbar";
 import NewsContent from "./components/Newscontent";
 import FavoriteNews from "./pages/FavoriteNews";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+const httpLink = createHttpLink({
+  uri: '/graphql'
+})
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ''
+    }
+  }
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
 
 function App() {
   return (
-    <BrowserRouter>
-      <Navbar></Navbar>
-      <Routes>
-        <Route path="/" element={<NewsContent />}></Route>
-        <Route path="/favorites" element={<FavoriteNews />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Navbar></Navbar>
+        <Routes>
+          <Route path="/" element={<NewsContent />}></Route>
+          <Route path="/favorites" element={<FavoriteNews />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
   );
 }
 
