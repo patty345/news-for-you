@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER, LOGIN_USER } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -26,6 +26,10 @@ const AppNavbar = () => {
     email: '',
     password: ''
   })
+  const [loginFormState, setLoginFormState ] = useState({
+    email: '',
+    password: ''
+  })
 
   const handleSignUpChange = (event) => {
     const { name, value } = event.target;
@@ -36,7 +40,17 @@ const AppNavbar = () => {
     });
   }
 
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+
+    setLoginFormState({
+      ...loginFormState,
+      [name]: value,
+    });
+  }
+
   const [addUser, { error }] = useMutation(ADD_USER);
+  const [login, { loginError }] = useMutation(LOGIN_USER);
 
   const handleLoginClose = () => setLoginShow(false);
   const handleLoginShow = () => setLoginShow(true);
@@ -56,6 +70,19 @@ const AppNavbar = () => {
       Auth.login(data.addUser.token);
     } catch (error) {
       console.error(error)
+    }
+  }
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await login({
+        variables: { ...loginFormState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
     }
   }
 //  const onClickLogin = () => {
@@ -110,18 +137,18 @@ const AppNavbar = () => {
             <Modal.Body>
               <InputGroup className="mb-3">
                 <InputGroup.Text>Email</InputGroup.Text>
-                <FormControl type="email" />
+                <FormControl name="email" value={loginFormState.email} onChange={handleLoginChange} type="email" />
               </InputGroup>
               <InputGroup className="mb-3">
                 <InputGroup.Text>Password</InputGroup.Text>
-                <FormControl type="password" />
+                <FormControl name="password" value={loginFormState.password} onChange={handleLoginChange} type="password" />
               </InputGroup>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleLoginClose}>
                 Close
               </Button>
-              <Button variant="primary" >Login</Button>
+              <Button onClick={handleLoginSubmit} variant="primary" >Login</Button>
             </Modal.Footer>
           </Modal>
           <Modal size='lg' show={signUpShow} onHide={handleSignUpClose}>
@@ -132,16 +159,16 @@ const AppNavbar = () => {
     </Modal.Header>
     <Modal.Body>
     <InputGroup className='mb-3'>
-            <InputGroup.Text name="username" value={signUpFormState.username} onChange={handleSignUpChange}>Username</InputGroup.Text>
-            <FormControl type='username' />
+            <InputGroup.Text>Username</InputGroup.Text>
+            <FormControl name="username" value={signUpFormState.username} onChange={handleSignUpChange} type='username' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text name="email" value={signUpFormState.email} onChange={handleSignUpChange}>Email</InputGroup.Text>
-            <FormControl type='email' />
+            <InputGroup.Text>Email</InputGroup.Text>
+            <FormControl name="email" value={signUpFormState.email} onChange={handleSignUpChange} type='email' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text name="password" value={signUpFormState.password} onChange={handleSignUpChange}>Password</InputGroup.Text>
-            <FormControl type='password' />
+            <InputGroup.Text>Password</InputGroup.Text>
+            <FormControl name="password" value={signUpFormState.password} onChange={handleSignUpChange} type='password' />
         </InputGroup>
     </Modal.Body>
     <Modal.Footer>
