@@ -6,10 +6,11 @@ import { searchArticles } from "../utils/API";
 
 
 const NewsContent = () => {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([])
   
 
-  const handleArticles = async () => {
+  const handleArticles = async (event) => {
+    event.preventDefault();
     try {
       const response = await searchArticles(1);
 

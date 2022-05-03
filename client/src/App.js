@@ -1,4 +1,5 @@
 import React from "react";
+import Form from './components/SearchForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -11,21 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 import Navbar from "./components/Navbar";
 import NewsContent from "./components/Newscontent";
 import FavoriteNews from "./pages/FavoriteNews";
-<<<<<<< HEAD
-import Form from "./components/SearchForm";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Navbar></Navbar>
-      <Form />
-      <Routes>
-        <Route path="/" element={<NewsContent />}></Route>
-        <Route path="/favorites" element={<FavoriteNews />}></Route>
-      </Routes>
-    </BrowserRouter>
-=======
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
@@ -51,13 +38,13 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Navbar></Navbar>
+        <Form />
         <Routes>
           <Route path="/" element={<NewsContent />}></Route>
           <Route path="/favorites" element={<FavoriteNews />}></Route>
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
->>>>>>> cf58598ab6f707f66d1a49799a16f441c4d1aba4
   );
 }
 
