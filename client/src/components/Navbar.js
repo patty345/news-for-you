@@ -28,7 +28,7 @@ const AppNavbar = () => {
   })
 
   const handleSignUpChange = (event) => {
-    const {name, value } = event.target;
+    const { name, value } = event.target;
 
     setSignUpFormState({
       ...signUpFormState,
