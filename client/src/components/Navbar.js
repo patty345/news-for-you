@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
+
 import {
   Navbar,
   Container,
@@ -12,15 +17,45 @@ import {
 // import LoginForm from "./LoginForm";
 // import SignUpForm from "./SignupForm";
 
+
 const AppNavbar = () => {
   const [loginShow, setLoginShow] = useState(false);
   const [signUpShow, setSignUpShow] = useState(false);
+  const [signUpFormState, setSignUpFormState ] = useState({
+    username: '',
+    email: '',
+    password: ''
+  })
+
+  const handleSignUpChange = (event) => {
+    const {name, value } = event.target;
+
+    setSignUpFormState({
+      ...signUpFormState,
+      [name]: value,
+    });
+  }
+
+  const [addUser, { error }] = useMutation(ADD_USER);
 
   const handleLoginClose = () => setLoginShow(false);
   const handleLoginShow = () => setLoginShow(true);
   const handleSignUpClose = () => setSignUpShow(false);
   const handleSignUpShow = () => setSignUpShow(true);
 
+
+  const handleSingUpSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await addUser({
+        variables: { ...signUpFormState }
+      });
+
+      Auth.login(data.addUser.token);
+    } catch (error) {
+      console.error(error)
+    }
+  }
 //  const onClickLogin = () => {
 //      console.log("test")
 //      // Get value from Email input
@@ -94,21 +129,21 @@ const AppNavbar = () => {
     </Modal.Header>
     <Modal.Body>
     <InputGroup className='mb-3'>
-            <InputGroup.Text>Username</InputGroup.Text>
+            <InputGroup.Text onChange={handleSignUpChange}>Username</InputGroup.Text>
             <FormControl type='username' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text>Email</InputGroup.Text>
+            <InputGroup.Text onChange={handleSignUpChange}>Email</InputGroup.Text>
             <FormControl type='email' />
         </InputGroup>
         <InputGroup className='mb-3'>
-            <InputGroup.Text>Password</InputGroup.Text>
+            <InputGroup.Text onChange={handleSignUpChange}>Password</InputGroup.Text>
             <FormControl type='password' />
         </InputGroup>
     </Modal.Body>
     <Modal.Footer>
         <Button variant='secondary' onClick={handleSignUpClose}>Close</Button>
-        <Button variant='primary'>Submit</Button>
+        <Button variant='primary' onClick={handleSingUpSubmit}>Submit</Button>
     </Modal.Footer>
 </Modal>
         </Container>
