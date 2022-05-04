@@ -62,16 +62,16 @@ const NewsContent = () => {
         throw new Error("something went wrong");
       }
 
-      const { articles } = await response.json();
+      const { data } = await response.json();
 
-      const newsData = articles.map((news) => ({
-        author: news.source.name,
+      const newsData = data.map((news) => ({
+        author: news.source,
         title: news.title,
         description: news.description,
-        content: news.content,
-        publishedAt: news.publishedAt,
+        content: news.snippet,
+        publishedAt: news.published_at,
         url: news.url,
-        urlToImage: news.image,
+        urlToImage: news.image_url,
       }));
 
       setArticles(newsData);
@@ -88,7 +88,7 @@ const NewsContent = () => {
   return (
     <Row xs={1} md={2} className="g-4">
       
-      {articles.map((news, idx) => news.author && news.urlToImage && news.description && news.title && news.url ?(
+      {articles.map((news, idx) => news.author && news.urlToImage && news.content && news.description && news.title && news.url ?(
         
           <Col key={count++} style={{ padding: "5rem" }}>
             <Card key={count2++}>
