@@ -1,4 +1,5 @@
 import React from "react";
+import Form from './components/SearchForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
@@ -36,6 +37,7 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Navbar></Navbar>
+        <Form />
         <Routes>
           <Route path="/" element={<NewsContent />}></Route>
           <Route path="/favorites" element={<FavoriteNews />}></Route>
