@@ -10,7 +10,7 @@ const typeDefs = gql`
 
     type Article {
         _id: ID
-        publisher: String
+        author: String
         title:  String
         description: String
         content: String

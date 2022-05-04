@@ -17,7 +17,7 @@ const NewsContent = () => {
     console.log(article);
     try {
       await addArticle({
-        variables: { ...article},
+        variables: { ...article },
       });
     } catch (error) {
       console.error(error);
@@ -59,20 +59,21 @@ const NewsContent = () => {
   return (
     <Row xs={1} md={2} className="g-4">
       
-      {articles.map((news, idx) => (
-          
-        <Col key={count++} style={{ padding: "5rem" }}>
-          <Card>
-            <Card.Img variant="top" src={news.urlToImage} />
-            <Card.Body>
-              <Card.Title key={news.id}>{news.title}</Card.Title>
-              <Card.Text key={news.id}>{news.description}</Card.Text>
-              <Button variant="info"><a href={news.url}>View Article</a></Button>
-              <Button onClick={() => handleFavoriteAricle(news)} variant="info">Save to Favorites</Button>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
+      {articles.map((news, idx) => news.author && news.urlToImage && news.description && news.title && news.url ?(
+        
+          <Col key={count++} style={{ padding: "5rem" }}>
+            <Card>
+              <Card.Img variant="top" src={news.urlToImage} />
+              <Card.Body>
+                <Card.Title>{news.title}</Card.Title>
+                <Card.Text>{news.description}</Card.Text>
+                <Button variant="info"><a href={news.url}>View Article</a></Button>
+                <Button onClick={() => handleFavoriteAricle(news)} variant="info">Save to Favorites</Button>
+              </Card.Body>
+            </Card>
+          </Col>
+        ) :
+        (<></>))}
     </Row>
   );
 };
