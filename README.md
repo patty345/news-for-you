@@ -15,11 +15,26 @@ This is a website for reading news articles. News articles will be housed on the
 
 - Clone our repo to your computer
 
+- npm install
+
+This should install node modules within the server and the client folder
+
+After both installations are complete, run the following command in your terminal:
+
+- npm start 
+
+Your app should be now running on http://localhost:3000
+
 
 
 ## Animated Gifs/Pictures of App
 
-- Place various screens of your app here after they have been built
+![LandingPage](./client/images/LandingPage.png)
+![LoginForm](./client/images/LoginPage.png)
+![SignUpForm](./client/images/SignUpPage.png)
+![ViewArticlesPage](./client/images/ViewArticlesPage.png)
+![FavoritesPage](./client/images/FavoritesPage.png)
+
 
 ## Tech Stack
 
@@ -38,6 +53,8 @@ This is a website for reading news articles. News articles will be housed on the
 ## APIs
 
 - Stripe
+
+- NewsAPI
 
 ## MVP (Minimum Viable Product)
 
