@@ -1,5 +1,4 @@
 import React from "react";
-import Form from './components/SearchForm';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,

@@ -6,8 +6,9 @@ import { DELETE_FAVORITE_ARTICLE } from '../utils/mutations'
 
 import Auth from '../utils/auth'
 const FavoriteNews = () =>  {
+    let count = 0;
     const { loading, data } = useQuery(QUERY_ME);
-    const [removeArticle, { error }] = useMutation(DELETE_FAVORITE_ARTICLE);
+    const [removeArticle] = useMutation(DELETE_FAVORITE_ARTICLE);
     const favoriteArticles = data?.me.favoriteArticles || [];
     const handleDeleteFavorite = async (_id) => {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -36,7 +37,7 @@ const FavoriteNews = () =>  {
         <>
           <Row xs={1} md={2} className="g-4">
           {(Auth.loggedIn())?favoriteArticles.map((me, idx) => (
-            <Col style={{ padding: '5rem'}}>
+            <Col key={count++} style={{ padding: '5rem'}}>
               <Card>
                 <Card.Img variant="top" src={me.urlToImage} />
                 <Card.Body>
@@ -44,6 +45,7 @@ const FavoriteNews = () =>  {
                   <Card.Text>
                     {me.description}
                   </Card.Text>
+                  <Button variant="info"><a href={me.url}>View Article</a></Button>
                   <Button onClick={() => handleDeleteFavorite(me._id)} variant='danger'>Delete</Button>
                 </Card.Body>
               </Card>

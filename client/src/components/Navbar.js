@@ -24,6 +24,7 @@ const AppNavbar = () => {
     username: "",
     email: "",
     password: "",
+    subscribed: false
   });
   const [loginFormState, setLoginFormState] = useState({
     email: "",
@@ -48,8 +49,8 @@ const AppNavbar = () => {
     });
   };
 
-  const [addUser, { error }] = useMutation(ADD_USER);
-  const [login, { loginError }] = useMutation(LOGIN_USER);
+  const [addUser] = useMutation(ADD_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   const handleLoginClose = () => setLoginShow(false);
   const handleLoginShow = () => setLoginShow(true);
