@@ -58,10 +58,7 @@ const AppNavbar = () => {
   const handleSignUpShow = () => setSignUpShow(true);
 
 
-<<<<<<< HEAD
-=======
   
->>>>>>> 36c69a2e57ca5f970c62d1199fcbfb34015ae462
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     try {
