@@ -4,7 +4,8 @@ const typeDefs = gql`
     type User {
         _id: ID
         username: String
-        email: String
+        email: String,
+        subscribed: Boolean,
         favoriteArticles: [Article]
     }
 
@@ -33,7 +34,7 @@ const typeDefs = gql`
 
     type Mutation {
         login(email: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!, subscribed: Boolean!): Auth
         addArticle(author: String!, title: String!, description: String!, content: String!, url: String!, urlToImage: String!, publishedAt: String!): User
         deleteArticle(_id: ID!): User
     }

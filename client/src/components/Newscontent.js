@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Row, Card, Col, Button } from "react-bootstrap";
 import { searchArticles } from "../utils/API";
 import { useMutation } from "@apollo/client";
+// import { QUERY_ME } from "../utils/queries";
 
 import { ADD_FAVORITE_ARTICLE } from "../utils/mutations";
 
@@ -10,7 +11,8 @@ import { ADD_FAVORITE_ARTICLE } from "../utils/mutations";
 
 const NewsContent = () => {
   const [articles, setArticles] = useState([]);
-
+  // const { loading, data } = useQuery(QUERY_ME);
+  // const me = data?.me || {};
   const [addArticle, { error }] = useMutation(ADD_FAVORITE_ARTICLE);
 
   const handleFavoriteAricle = async (article) => {
@@ -23,6 +25,31 @@ const NewsContent = () => {
       console.error(error);
     }
   }
+
+  // const handleSubscribe = () => {
+  //   fetch("http://localhost:3001/session", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       items: [
+  //         { id: 1, quantity: 3 },
+  //         { id: 2, quantity: 1 },
+  //       ],
+  //     }),
+  //   })
+  //     .then(res => {
+  //       if (res.ok) return res.json()
+  //       return res.json().then(json => Promise.reject(json))
+  //     })
+  //     .then(({ url }) => {
+  //       window.location = url
+  //     })
+  //     .catch(e => {
+  //       console.error(e.error)
+  //     })
+  // }
   
 
   const handleArticles = async () => {
