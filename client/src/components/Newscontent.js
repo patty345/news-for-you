@@ -13,7 +13,7 @@ const NewsContent = () => {
   const [articles, setArticles] = useState([]);
   // const { loading, data } = useQuery(QUERY_ME);
   // const me = data?.me || {};
-  const [addArticle, { error }] = useMutation(ADD_FAVORITE_ARTICLE);
+  const [addArticle] = useMutation(ADD_FAVORITE_ARTICLE);
 
   const handleFavoriteAricle = async (article) => {
     console.log(article);
@@ -79,6 +79,7 @@ const NewsContent = () => {
     }
   };
   let count = 0;
+  let count2 = 0;
   useEffect(() => {
     handleArticles();
   }, []);
@@ -89,7 +90,7 @@ const NewsContent = () => {
       {articles.map((news, idx) => news.author && news.urlToImage && news.description && news.title && news.url ?(
         
           <Col key={count++} style={{ padding: "5rem" }}>
-            <Card>
+            <Card key={count2++}>
               <Card.Img variant="top" src={news.urlToImage} />
               <Card.Body>
                 <Card.Title>{news.title}</Card.Title>
