@@ -13,7 +13,6 @@ import Navbar from "./components/Navbar";
 import NewsContent from "./components/Newscontent";
 import FavoriteNews from "./pages/FavoriteNews";
 
-
 const httpLink = createHttpLink({
   uri: 'http://localhost:3001/graphql'
 })
