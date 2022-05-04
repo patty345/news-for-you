@@ -8,7 +8,7 @@ export const QUERY_ME = gql`
             email
             favoriteArticles {
                 _id
-                publisher
+                author
                 title
                 description
                 content

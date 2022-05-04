@@ -53,7 +53,7 @@ const resolvers = {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { username: context.user.username },
-                    { $push: { favoriteArticles: { publisher, title, description, content, url, urlToImage, publishedAt }}},
+                    { $push: { favoriteArticles: { author, title, description, content, url, urlToImage, publishedAt }}},
                     { new: true, runValidators: true }
                 );
                 return updatedUser;

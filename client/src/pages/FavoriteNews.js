@@ -10,9 +10,8 @@ const FavoriteNews = () =>  {
     const [removeArticle, { error }] = useMutation(DELETE_FAVORITE_ARTICLE);
 
     const userInfoData = data?.me || {};
-    const { data: userData } = useQuery(QUERY_ME);
     const userInfoLength = Object.keys(userInfoData).length;
-    console.log(userData)
+    console.log(userInfoData)
     const handleDeleteFavorite = async (_id) => {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -37,7 +36,7 @@ const FavoriteNews = () =>  {
     return(
         <>
           <Row xs={1} md={2} className="g-4">
-          {userData.map((me, idx) => (
+          {userInfoData.map((me, idx) => (
     <Col style={{ padding: '5rem'}}>
       <Card>
         <Card.Img variant="top" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
