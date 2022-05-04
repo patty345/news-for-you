@@ -16,11 +16,13 @@ This is a website for reading news articles. News articles will be housed on the
 - Clone our repo to your computer
 
 - npm install
+
 This should install node modules within the server and the client folder
 
 After both installations are complete, run the following command in your terminal:
 
 - npm start 
+
 Your app should be now running on http://localhost:3000
 
 
