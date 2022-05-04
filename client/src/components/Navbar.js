@@ -103,17 +103,20 @@ const AppNavbar = () => {
               >
                 Home
               </Nav.Link>
-              <Nav.Link
-                href="/favorites"
-                eventKey={2}
-                style={{
-                  marginRight: "1rem",
-                  padding: "0.7rem 1rem",
-                  fontsize: "10px",
-                }}
-              >
-                Favorites
-              </Nav.Link>
+              {(Auth.loggedIn()) ?
+                <Nav.Link
+                  href="/favorites"
+                  eventKey={2}
+                  style={{
+                    marginRight: "1rem",
+                    padding: "0.7rem 1rem",
+                    fontsize: "10px",
+                  }}
+                >
+                  Favorites
+                </Nav.Link> :
+                <></>
+              }
               {Auth.loggedIn() ? (
                 <>
                   <Button

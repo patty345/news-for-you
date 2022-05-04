@@ -8,10 +8,7 @@ import Auth from '../utils/auth'
 const FavoriteNews = () =>  {
     const { loading, data } = useQuery(QUERY_ME);
     const [removeArticle, { error }] = useMutation(DELETE_FAVORITE_ARTICLE);
-
-    const userInfoData = data?.me || {};
-    const userInfoLength = Object.keys(userInfoData).length;
-    console.log(userInfoData)
+    const favoriteArticles = data?.me.favoriteArticles || [];
     const handleDeleteFavorite = async (_id) => {
       const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -23,6 +20,8 @@ const FavoriteNews = () =>  {
         const{ data } = await removeArticle({
           variables: { _id },
         })
+
+        document.location.reload();
 
       } catch (err) {
         console.log(err)
@@ -36,22 +35,23 @@ const FavoriteNews = () =>  {
     return(
         <>
           <Row xs={1} md={2} className="g-4">
-          {userInfoData.map((me, idx) => (
-    <Col style={{ padding: '5rem'}}>
-      <Card>
-        <Card.Img variant="top" src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" />
-        <Card.Body>
-          <Card.Title>{me.favoriteArticle.author}</Card.Title>
-          <Card.Text>
-            This is a longer card with supporting text below as a natural
-            lead-in to additional content. This content is a little bit longer.
-          </Card.Text>
-          <Button onClick={handleDeleteFavorite()} variant='danger'>Delete</Button>
-        </Card.Body>
-      </Card>
-    </Col>
-  ))}
-</Row>  
+          {(Auth.loggedIn())?favoriteArticles.map((me, idx) => (
+            <Col style={{ padding: '5rem'}}>
+              <Card>
+                <Card.Img variant="top" src={me.urlToImage} />
+                <Card.Body>
+                  <Card.Title>{me.author}</Card.Title>
+                  <Card.Text>
+                    {me.description}
+                  </Card.Text>
+                  <Button onClick={() => handleDeleteFavorite(me._id)} variant='danger'>Delete</Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          )):
+            <h1>Please Log In</h1>
+          }
+          </Row>  
         </>
     )
 }
