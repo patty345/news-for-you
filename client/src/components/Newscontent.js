@@ -9,8 +9,8 @@ const NewsContent = () => {
   const [articles, setArticles] = useState([]);
   
 
-  const handleArticles = async (event) => {
-    event.preventDefault();
+  const handleArticles = async () => {
+    
     try {
       const response = await searchArticles();
 
