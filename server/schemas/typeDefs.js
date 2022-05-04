@@ -34,6 +34,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         addArticle(username: String!, publisher: String!, title: String!, description: String!, content: String!, url: String!, urlToImage: String!, publishedAt: String!): User
+        deleteArticle(_id: ID!): User
     }
 `
 
