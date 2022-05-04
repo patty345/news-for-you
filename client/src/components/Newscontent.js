@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Row, Card, Col, Button } from "react-bootstrap";
 import { searchArticles } from "../utils/API";
 
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -24,6 +26,7 @@ const NewsContent = () => {
         title: news.title,
         description: news.description,
         content: news.content,
+        url: news.url,
         urlToImage: news.urlToImage,
       }));
 
@@ -32,7 +35,7 @@ const NewsContent = () => {
       return console.log(err);
     }
   };
-
+  let count = 0;
   useEffect(() => {
     handleArticles();
   }, []);
@@ -42,12 +45,13 @@ const NewsContent = () => {
       
       {articles.map((news, idx) => (
           
-        <Col style={{ padding: "5rem" }}>
+        <Col key={count++} style={{ padding: "5rem" }}>
           <Card>
             <Card.Img variant="top" src={news.urlToImage} />
             <Card.Body>
-              <Card.Title>{news.title}</Card.Title>
-              <Card.Text>{news.description}</Card.Text>
+              <Card.Title key={news.id}>{news.title}</Card.Title>
+              <Card.Text key={news.id}>{news.description}</Card.Text>
+              <Button variant="info"><a href={news.url}>View Article</a></Button>
               <Button variant="info">Save to Favorites</Button>
             </Card.Body>
           </Card>
