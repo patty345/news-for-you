@@ -49,7 +49,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
-        addArticle: async (parent, { publisher, title, description, content, url, urlToImage, publishedAt }, context) => {
+        addArticle: async (parent, { author, title, description, content, url, urlToImage, publishedAt }, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { username: context.user.username },
@@ -59,6 +59,17 @@ const resolvers = {
                 return updatedUser;
             }
             throw new AuthenticationError('You need to log in to do this');
+        },
+        deleteArticle: async(parent, { _id }, context) => {
+            if (context.user) {
+                const updatedUser = await user.findOneAndUpdate(
+                    { username: context.user.username },
+                    { $pull: {  favoriteArticles: { _id }}},
+                    { new: true, runValidators: true }
+                );
+                return updatedUser;
+
+            }
         }
     }
 }
