@@ -52,6 +52,8 @@ Your app should be now running on http://localhost:3000
 
 - Stripe
 
+- NewsAPI
+
 ## MVP (Minimum Viable Product)
 
 - As a user
