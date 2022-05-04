@@ -37,7 +37,6 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Navbar></Navbar>
-        <Form />
         <Routes>
           <Route path="/" element={<NewsContent />}></Route>
           <Route path="/favorites" element={<FavoriteNews />}></Route>
