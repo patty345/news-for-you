@@ -1,5 +1,5 @@
 export const searchArticles = () => {
   return fetch(
-    `https://newsapi.org/v2/everything?q=weather&pageSize=10&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
+    `https://gnews.io/api/v4/search?q=example&token=${process.env.REACT_APP_API_KEY}`
   );
 };

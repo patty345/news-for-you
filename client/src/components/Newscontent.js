@@ -3,6 +3,7 @@ import { Row, Card, Col, Button } from "react-bootstrap";
 import { searchArticles } from "../utils/API";
 import { useMutation } from "@apollo/client";
 // import { QUERY_ME } from "../utils/queries";
+import Auth from "../utils/auth";
 
 import { ADD_FAVORITE_ARTICLE } from "../utils/mutations";
 
@@ -64,13 +65,13 @@ const NewsContent = () => {
       const { articles } = await response.json();
 
       const newsData = articles.map((news) => ({
-        author: news.author,
+        author: news.source.name,
         title: news.title,
         description: news.description,
         content: news.content,
         publishedAt: news.publishedAt,
         url: news.url,
-        urlToImage: news.urlToImage,
+        urlToImage: news.image,
       }));
 
       setArticles(newsData);
@@ -95,8 +96,13 @@ const NewsContent = () => {
               <Card.Body>
                 <Card.Title>{news.title}</Card.Title>
                 <Card.Text>{news.description}</Card.Text>
-                <Button variant="info"><a href={news.url}>View Article</a></Button>
-                <Button onClick={() => handleFavoriteAricle(news)} variant="info">Save to Favorites</Button>
+                {Auth.loggedIn() ? (
+                  <>
+                  <Button variant="info"><a href={news.url}>View Article</a></Button>
+                  <Button onClick={() => handleFavoriteAricle(news)} variant="info">Save to Favorites</Button>
+                  </>
+                ):
+                (<h5>Login In To View</h5>)}
               </Card.Body>
             </Card>
           </Col>
