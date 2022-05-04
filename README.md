@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-This is a website for reading news articles. News articles will be housed on the website. Then as a user you can create an account, and subscribe to view all of the articles. There will also be publisher accounts that can be created, so that publishers can add new news articles to the website.
+This is a website for reading news articles. News articles will be housed on the website. Then as a user you can create an account, and view all of the articles. 
 
 ## Developers
 
@@ -51,8 +51,6 @@ Your app should be now running on http://localhost:3000
 - Heroku
 
 ## APIs
-
-- Stripe
 
 - NewsAPI
 
