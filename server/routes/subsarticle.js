@@ -24,8 +24,14 @@ router.post('/session', auth, async (req, res) => {
                 quantity: 1
             }
         ],
-        
+        success_url: 'http://localhost:3000',
+        cancel_url: 'http://localhost:3000',
+        customer: user.stripeCustomerId
+    }, {
+        apiKey: process.env.STRIPE_SECRET_KEY
     })
+
+    return res.json(session)
 })
 
 export default router;
