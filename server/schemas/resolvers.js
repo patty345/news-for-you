@@ -49,7 +49,7 @@ const resolvers = {
             const token = signToken(user);
             return { token, user }
         },
-        addArticle: async (parent, { publisher, title, description, content, url, urlToImage, publishedAt }, context) => {
+        addArticle: async (parent, { author, title, description, content, url, urlToImage, publishedAt }, context) => {
             if (context.user) {
                 const updatedUser = await User.findOneAndUpdate(
                     { username: context.user.username },

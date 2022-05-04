@@ -1,14 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Row, Card, Col, Button } from "react-bootstrap";
 import { searchArticles } from "../utils/API";
+import { useMutation } from "@apollo/client";
 
-import { Link } from 'react-router-dom';
+import { ADD_FAVORITE_ARTICLE } from "../utils/mutations";
 
 
 
 
 const NewsContent = () => {
   const [articles, setArticles] = useState([]);
+
+  const [addArticle, { error }] = useMutation(ADD_FAVORITE_ARTICLE);
+
+  const handleFavoriteAricle = async (article) => {
+    console.log(article);
+    try {
+      await addArticle({
+        variables: { ...article},
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
   
 
   const handleArticles = async () => {
@@ -23,10 +37,11 @@ const NewsContent = () => {
       const { articles } = await response.json();
 
       const newsData = articles.map((news) => ({
-        publisher: news.publisher,
+        author: news.author,
         title: news.title,
         description: news.description,
         content: news.content,
+        publishedAt: news.publishedAt,
         url: news.url,
         urlToImage: news.urlToImage,
       }));
@@ -53,7 +68,7 @@ const NewsContent = () => {
               <Card.Title key={news.id}>{news.title}</Card.Title>
               <Card.Text key={news.id}>{news.description}</Card.Text>
               <Button variant="info"><a href={news.url}>View Article</a></Button>
-              <Button variant="info">Save to Favorites</Button>
+              <Button onClick={() => handleFavoriteAricle(news)} variant="info">Save to Favorites</Button>
             </Card.Body>
           </Card>
         </Col>

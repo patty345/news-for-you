@@ -25,17 +25,10 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_FAVORITE_ARTICLE = gql`
-    mutation addArticle($username: String!, $publisher: String!, $title: String!, $description: String!, $content: String!, $url: String!, $urlToImage: String!, $publishedAt: String!) {
-        addArticle(username: $username, publisher: $publisher, title: $title, description: $description, content: $content, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt) {
-            favoriteArticle {
-                _id: ID
-                publisher: String
-                title:  String
-                description: String
-                content: String
-                url: String
-                urlToImage: String
-                publishedAt: String
+    mutation addArticle($author: String!, $title: String!, $description: String!, $content: String!, $url: String!, $urlToImage: String!, $publishedAt: String!) {
+        addArticle(author: $author, title: $title, description: $description, content: $content, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt) {
+            favoriteArticles {
+                _id: _id
             }
         }
     }
