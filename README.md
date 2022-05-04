@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-This is a website for reading news articles. News articles will be housed on the website. Then as a user you can create an account, and subscribe to view all of the articles. There will also be publisher accounts that can be created, so that publishers can add new news articles to the website.
+This is a website for reading news articles. News articles will be housed on the website. Then as a user you can create an account, and view all of the articles. 
 
 ## Developers
 
@@ -15,11 +15,26 @@ This is a website for reading news articles. News articles will be housed on the
 
 - Clone our repo to your computer
 
+- npm install
+
+This should install node modules within the server and the client folder
+
+After both installations are complete, run the following command in your terminal:
+
+- npm start 
+
+Your app should be now running on http://localhost:3000
+
 
 
 ## Animated Gifs/Pictures of App
 
-- Place various screens of your app here after they have been built
+![LandingPage](./client/images/LandingPage.png)
+![LoginForm](./client/images/LoginPage.png)
+![SignUpForm](./client/images/SignUpPage.png)
+![ViewArticlesPage](./client/images/ViewArticlesPage.png)
+![FavoritesPage](./client/images/FavoritesPage.png)
+
 
 ## Tech Stack
 
@@ -37,7 +52,7 @@ This is a website for reading news articles. News articles will be housed on the
 
 ## APIs
 
-- Stripe
+- NewsAPI
 
 ## MVP (Minimum Viable Product)
 

@@ -24,6 +24,7 @@ const AppNavbar = () => {
     username: "",
     email: "",
     password: "",
+    subscribed: false
   });
   const [loginFormState, setLoginFormState] = useState({
     email: "",
@@ -48,8 +49,8 @@ const AppNavbar = () => {
     });
   };
 
-  const [addUser, { error }] = useMutation(ADD_USER);
-  const [login, { loginError }] = useMutation(LOGIN_USER);
+  const [addUser] = useMutation(ADD_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   const handleLoginClose = () => setLoginShow(false);
   const handleLoginShow = () => setLoginShow(true);
@@ -103,17 +104,20 @@ const AppNavbar = () => {
               >
                 Home
               </Nav.Link>
-              <Nav.Link
-                href="/favorites"
-                eventKey={2}
-                style={{
-                  marginRight: "1rem",
-                  padding: "0.7rem 1rem",
-                  fontsize: "10px",
-                }}
-              >
-                Favorites
-              </Nav.Link>
+              {(Auth.loggedIn()) ?
+                <Nav.Link
+                  href="/favorites"
+                  eventKey={2}
+                  style={{
+                    marginRight: "1rem",
+                    padding: "0.7rem 1rem",
+                    fontsize: "10px",
+                  }}
+                >
+                  Favorites
+                </Nav.Link> :
+                <></>
+              }
               {Auth.loggedIn() ? (
                 <>
                   <Button

@@ -2,7 +2,7 @@ const { Schema } = require('mongoose')
 
 
 const articleSchema = new Schema({
-    publisher: {
+    author: {
         type: String
     },
     title:  {

@@ -18,6 +18,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    subscribed: {
+        type: Boolean,
+        required: true
+    },
     favoriteArticles: [articleSchema]
 })
 
