@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 
 const resolvers = {
@@ -22,6 +23,40 @@ const resolvers = {
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
+        },
+        checkout: async(parent, args, context) => {
+            const order = new Order({ article: args.articles })
+            const { articles } = await order.populate('articles')
+
+            const line_items = [];
+
+            for (let i = 0; i < articles.length; i++) {
+                const article = await stripe.article.create({
+                    name: articles[i].name,
+                    description: articles[i].description
+                });
+
+                const price = await stripe.prices.create({
+                    article: article.id,
+                    unit_amount: articles[i].price * 100,
+                    currency: 'usd'
+                })
+
+                line_items.push({
+                    price: price.id,
+                    quantity: 1
+                })
+            }
+
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'subscription',
+                success_url: 'https://localhost:3000/success',
+                cancel_url: 'https://localhost:3000/cancel'
+            })
+
+            return { session: session.id}
         }
     },
     Mutation: {
