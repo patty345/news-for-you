@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Row, Card, Col, Button } from "react-bootstrap";
 import { searchArticles } from "../utils/API";
 
@@ -6,12 +6,12 @@ import { searchArticles } from "../utils/API";
 
 
 const NewsContent = () => {
-  const [articles, setArticles] = useState();
+  const [articles, setArticles] = useState([]);
   
 
   const handleArticles = async () => {
     try {
-      const response = await searchArticles(1);
+      const response = await searchArticles();
 
       if (!response.ok) {
         throw new Error("something went wrong");
@@ -29,10 +29,14 @@ const NewsContent = () => {
 
       setArticles(newsData);
     } catch (err) {
-      console.log(err);
+      return console.log(err);
     }
   };
-  handleArticles();
+
+  useEffect(() => {
+    handleArticles();
+  }, []);
+
   return (
     <Row xs={1} md={2} className="g-4">
       
