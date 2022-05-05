@@ -13,7 +13,7 @@ import NewsContent from "./components/Newscontent";
 import FavoriteNews from "./pages/FavoriteNews";
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql'
+  uri: '/graphql'
 })
 
 const authLink = setContext((_, { headers }) => {
