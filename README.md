@@ -4,6 +4,10 @@
 
 This is a website for reading news articles. News articles will be housed on the website. Then as a user you can create an account, and view all of the articles. 
 
+## Deployed Application
+
+Heroku: https://nameless-fjord-29662.herokuapp.com/
+
 ## Developers
 
 1. Zane Scheel 
